@@ -68,3 +68,58 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+# Weather Forecast and Cities Table Application
+
+## Project Description
+
+This project is a React-based web application that displays a table of cities with infinite scrolling and allows users to view detailed weather information for each city. The application includes:
+
+- A table of cities with infinite scroll, search, filter, and sorting features.
+- A weather page for each city that shows current and forecasted weather data.
+- Responsive design and dynamic backgrounds based on weather conditions.
+- Error handling and state management.
+
+## Features
+
+### Cities Table
+
+- **Infinite Scroll:** Load more cities as the user scrolls down.
+- **Search:** Search for cities by name or country as you type.
+- **Autocomplete:** Suggest possible locations based on user input.
+- **Filter and Sorting:** Filter and sort table columns.
+- **Link to Weather Page:** Click on a city name to view detailed weather information.
+- **Right-Click to Open in New Tab:** Open the weather page in a new tab by right-clicking on a city name.
+
+### Weather Page
+
+- **Current Weather:** Display temperature, weather description, humidity, wind speed, and atmospheric pressure.
+- **Forecast:** Show temperature highs and lows, weather descriptions, and precipitation chances.
+- **Dynamic Backgrounds:** Change backgrounds based on current weather conditions.
+- **Optional Features:** Map location, unit switching, save favorite locations, etc.
+
+### Responsive Design
+
+- Ensure the application works well on different screen sizes using media queries and responsive design techniques.
+
+### Error Handling
+
+- Gracefully handle errors from failed API requests or invalid search queries.
+- Display error messages when necessary.
+
+## Technologies Used
+
+- **React:** Frontend library for building the user interface.
+- **TypeScript (Optional):** For type safety and improved development experience.
+- **Bootstrap:** For styling the table and responsive design.
+- **OpenWeatherMap API:** To fetch current and forecasted weather data.
+- **Public Open Data API:** To fetch the list of cities.
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/your-repository.git
