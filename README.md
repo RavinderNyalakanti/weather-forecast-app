@@ -122,4 +122,4 @@ This project is a React-based web application that displays a table of cities wi
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-repository.git
+   git clone https://github.com/RavinderNyalakanti/weather-forecast-app.git

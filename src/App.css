@@ -563,6 +563,15 @@ h1 {
         width: 80%; /* Smaller width on small screens */
     }
 }
-
+.loading-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 100%;
+    margin-top: 50px; 
+    background-color: transparent;
+}
 
 

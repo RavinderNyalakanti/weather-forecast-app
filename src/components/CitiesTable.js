@@ -2,27 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchCities } from '../api/openWeatherAPI';
-import Table from 'react-bootstrap/Table';
+import Table from 'react-bootstrap/Table'; 
+import { BeatLoader  } from 'react-spinners'; 
 import '../App.css';
 
 const CitiesTable = () => {
-    const [cities, setCities] = useState([]); 
+    const [cities, setCities] = useState([]);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     const [filteredCities, setFilteredCities] = useState([]);
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+    const [loading, setLoading] = useState(true); // Track loading state
+    const [searchPerformed, setSearchPerformed] = useState(false);
 
     const loadMoreCities = async () => {
         const newCities = await fetchCities(page);
         if (newCities.length === 0) {
             setHasMore(false);
+            setLoading(false);
             return;
         }
         const updatedCities = [...cities, ...newCities];
         setCities(updatedCities);
         setFilteredCities(updatedCities);
         setPage(prevPage => prevPage + 1);
+        setLoading(false); // Data has been loaded, stop loading
     };
 
     useEffect(() => {
@@ -32,6 +37,8 @@ const CitiesTable = () => {
     const handleSearch = (event) => {
         const query = event.target.value.toLowerCase();
         setSearch(query);
+        setSearchPerformed(true);
+
         const filtered = cities.filter(city =>
             city.fields.name.toLowerCase().includes(query) ||
             city.fields.cou_name_en.toLowerCase().includes(query)
@@ -60,16 +67,15 @@ const CitiesTable = () => {
         return '';
     };
 
-    return ( 
-        <div className='mt-5 bg-primary main-card-container'> 
-         
+    return (
+        <div className='mt-5 bg-primary main-card-container'>
             <div className='header-card'>
                 <h1 className='font-weight-bold heading-card heading-card-text'>Weather Forecast Of Countries And Cities</h1>
-            </div> 
-           
+            </div>
+
             {/* Search Input */}
             <div className="search-bar search-input-card">
-                <input 
+                <input
                     type="text"
                     value={search}
                     onChange={handleSearch}
@@ -79,7 +85,13 @@ const CitiesTable = () => {
             </div>
 
             <div className='m-4 table-card-container'>
-                {filteredCities.length > 0 ? (
+                {loading ? (
+                    <div className="text-center loading-card">
+                        <h4>Loading  please wait...  </h4> 
+                        <BeatLoader />
+                    </div>
+
+                ) : filteredCities.length > 0 ? (
                     <InfiniteScroll
                         dataLength={filteredCities.length}
                         next={loadMoreCities}
@@ -115,10 +127,12 @@ const CitiesTable = () => {
                         </Table>
                     </InfiniteScroll>
                 ) : (
-                    <div className="text-center cities-not-found-card"> 
-                      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Error" className="error-image" />
-                        <h4>No matching cities or countries found.</h4>
-                    </div>
+                    searchPerformed && (
+                        <div className="text-center cities-not-found-card">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Error" className="error-image" />
+                            <h4>No matching cities or countries found.</h4>
+                        </div>
+                    )
                 )}
             </div>
         </div>
