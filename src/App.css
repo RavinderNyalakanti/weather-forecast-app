@@ -530,7 +530,11 @@ h1 {
         padding: 10px; /* Add padding for spacing */
     }
 }  
-
+/* @media screen and (min-width: 425px) {
+    .map-small{
+        width: 100px;
+    }
+} */
 
 @media screen and (min-width: 768px) and (max-width: 1300px) {
     .weather-card-main-container {   
